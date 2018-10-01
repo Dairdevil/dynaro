@@ -1,12 +1,16 @@
 package dynaro.messages;
 
+import dynaro.microtypes.EndpointPath;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.io.Serializable;
 import java.util.Map;
 
 public class ServiceRequest
         implements Serializable {
 
-    private String id;
+    private EndpointPath path;
 
     private Object payload;
 
@@ -16,8 +20,8 @@ public class ServiceRequest
 
     }
 
-    public String getId() {
-        return id;
+    public EndpointPath getPath() {
+        return path;
     }
 
     public Object getPayload() {
@@ -36,8 +40,8 @@ public class ServiceRequest
             this.serviceRequest = new ServiceRequest();
         }
 
-        public Builder withId(String id) {
-            this.serviceRequest.id = id;
+        public Builder withPath(EndpointPath path) {
+            this.serviceRequest.path = path;
             return this;
         }
 
@@ -54,5 +58,29 @@ public class ServiceRequest
         public ServiceRequest build() {
             return this.serviceRequest;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ServiceRequest that = (ServiceRequest) o;
+
+        return new EqualsBuilder()
+                .append(path, that.path)
+                .append(payload, that.payload)
+                .append(queryString, that.queryString)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(path)
+                .append(payload)
+                .append(queryString)
+                .toHashCode();
     }
 }

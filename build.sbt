@@ -1,10 +1,8 @@
 name := "dynaro"
  
 version := "1.0"
-
-lazy val lambdaApi = RootProject(file("../lambda-api"))
       
-lazy val `dynaro` = (project in file(".")).enablePlugins(PlayJava).dependsOn(lambdaApi)
+lazy val `dynaro` = (project in file(".")).enablePlugins(PlayJava)
 
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
       
@@ -30,6 +28,8 @@ libraryDependencies ++= {
 }
 
 libraryDependencies += "com.typesafe.akka" %% "akka-cluster-tools" % "2.5.16"
+
+libraryDependencies += "org.reflections" % "reflections" % "0.9.11"
 
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
       

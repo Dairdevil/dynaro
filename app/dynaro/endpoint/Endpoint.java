@@ -1,11 +1,13 @@
 package dynaro.endpoint;
 
+import dynaro.microtypes.EndpointPath;
+
 import java.io.Serializable;
 
 public interface Endpoint<I, O>
         extends Serializable {
 
-    String getPath();
+    EndpointPath getPath();
 
     String getActorRef();
 

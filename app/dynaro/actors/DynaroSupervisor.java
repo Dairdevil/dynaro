@@ -7,11 +7,13 @@ import akka.cluster.pubsub.DistributedPubSub;
 import akka.cluster.pubsub.DistributedPubSubMediator;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
+
 import dynaro.endpoint.Endpoint;
 import dynaro.endpoint.EndpointRegistry;
-import dynaro.messages.HandlePayload;
+import dynaro.messages.gateway.HandlePayload;
 import dynaro.messages.RegisterEndpoint;
 import dynaro.messages.RegisterEndpointConfirmation;
+import dynaro.microtypes.EndpointPath;
 
 public class DynaroSupervisor
         extends AbstractActor {
@@ -31,7 +33,8 @@ public class DynaroSupervisor
                 .match(HandlePayload.class, p -> {
                     log.info("HandlePayload received for path %s", p.getPath());
 
-                    Endpoint endpoint = EndpointRegistry.get(p.getPath());
+                    // TODO - allow for pattern matching
+                    Endpoint endpoint = EndpointRegistry.get(EndpointPath.withValue(p.getPath()));
 
                     if (endpoint == null) {
                         context().sender().tell("Endpoint not found", getSelf());

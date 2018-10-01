@@ -4,7 +4,7 @@
 		module="dynaro_2.11"
 		revision="1.0"
 		status="integration"
-		publication="20181001085045"
+		publication="20181001140508"
 	>
 		<description>
 		dynaro
@@ -34,7 +34,6 @@
 	<dependencies>
 		<dependency org="org.scala-lang" name="scala-compiler" rev="2.11.11" conf="scala-tool->default,optional(default)"/>
 		<dependency org="org.scala-lang" name="scala-library" rev="2.11.11" conf="scala-tool->default,optional(default);compile->default(compile)"/>
-		<dependency org="lambda-api" name="lambda-api_2.11" rev="1.0" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.play" name="twirl-api_2.11" rev="1.1.1" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.play" name="play-server_2.11" rev="2.5.9" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.play" name="play-test_2.11" rev="2.5.9" conf="test->default(compile)"/>
@@ -51,5 +50,6 @@
 		<dependency org="com.lightbend.akka.management" name="akka-management-cluster-bootstrap_2.11" rev="0.18.0" conf="compile->default(compile)"/>
 		<dependency org="com.lightbend.akka.discovery" name="akka-discovery-config_2.11" rev="0.18.0" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.akka" name="akka-cluster-tools_2.11" rev="2.5.16" conf="compile->default(compile)"/>
+		<dependency org="org.reflections" name="reflections" rev="0.9.11" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

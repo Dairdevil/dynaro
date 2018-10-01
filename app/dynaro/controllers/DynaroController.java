@@ -8,7 +8,7 @@ import akka.management.AkkaManagement;
 import akka.management.cluster.bootstrap.ClusterBootstrap;
 import akka.pattern.Patterns;
 import dynaro.actors.DynaroSupervisor;
-import dynaro.messages.HandlePayload;
+import dynaro.messages.gateway.HandlePayload;
 import play.mvc.Controller;
 import play.mvc.Result;
 import scala.compat.java8.FutureConverters;

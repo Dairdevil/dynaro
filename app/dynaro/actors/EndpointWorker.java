@@ -9,11 +9,12 @@ import akka.event.LoggingAdapter;
 import dynaro.endpoint.Endpoint;
 import dynaro.messages.RegisterEndpoint;
 import dynaro.messages.RegisterEndpointConfirmation;
+import dynaro.messages.service.EndpointRequest;
 
 import java.lang.reflect.ParameterizedType;
 import java.time.Duration;
 
-public abstract class EndpointWorker<R>
+public abstract class EndpointWorker<R extends EndpointRequest>
         extends AbstractActor {
 
     private LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
