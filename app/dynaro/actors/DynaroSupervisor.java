@@ -33,7 +33,6 @@ public class DynaroSupervisor
                 .match(HandlePayload.class, p -> {
                     log.info("HandlePayload received for path %s", p.getPath());
 
-                    // TODO - allow for pattern matching
                     Endpoint endpoint = EndpointRegistry.get(EndpointPath.withValue(p.getPath()));
 
                     if (endpoint == null) {
@@ -43,7 +42,7 @@ public class DynaroSupervisor
                         mediator.tell(
                                 new DistributedPubSubMediator.Send(
                                         endpoint.getActorRef(),
-                                        endpoint.getMessage(p.getPayload())
+                                        endpoint.getMessage(p)
                                 ), context().sender());
                     }
                 })

@@ -12,9 +12,11 @@ public class ServiceRequest
 
     private EndpointPath path;
 
+    private String actualPath;
+
     private Object payload;
 
-    private Map<String, String[]> queryString;
+    private transient Map<String, String[]> queryString;
 
     private ServiceRequest() {
 
@@ -22,6 +24,10 @@ public class ServiceRequest
 
     public EndpointPath getPath() {
         return path;
+    }
+
+    public String getActualPath() {
+        return actualPath;
     }
 
     public Object getPayload() {
@@ -42,6 +48,11 @@ public class ServiceRequest
 
         public Builder withPath(EndpointPath path) {
             this.serviceRequest.path = path;
+            return this;
+        }
+
+        public Builder withActualPath(String actualPath) {
+            this.serviceRequest.actualPath = actualPath;
             return this;
         }
 
@@ -70,6 +81,7 @@ public class ServiceRequest
 
         return new EqualsBuilder()
                 .append(path, that.path)
+                .append(actualPath, that.actualPath)
                 .append(payload, that.payload)
                 .append(queryString, that.queryString)
                 .isEquals();
@@ -79,6 +91,7 @@ public class ServiceRequest
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .append(path)
+                .append(actualPath)
                 .append(payload)
                 .append(queryString)
                 .toHashCode();

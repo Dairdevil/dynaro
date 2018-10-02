@@ -7,7 +7,7 @@
 		revision="1.0"
 		conf="runtime"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20181001144110"/>
+		date="20181002083502"/>
 	<dependencies>
 		<module organisation="com.typesafe.play" name="play-cache_2.11">
 			<revision name="2.5.9" status="release" pubdate="20161008234024" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://playframework.com" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="95">

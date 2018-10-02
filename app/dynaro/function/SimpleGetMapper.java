@@ -6,15 +6,15 @@ import dynaro.microtypes.EndpointPath;
 public class SimpleGetMapper
         implements SerializableFunction<Object, ServiceRequest> {
 
-    private String id;
+    private String path;
 
-    public SimpleGetMapper(String id) {
-        this.id = id;
+    public SimpleGetMapper(String path) {
+        this.path = path;
     }
 
     public ServiceRequest apply(Object obj) {
         return new ServiceRequest.Builder()
-                .withPath(EndpointPath.withValue(id))
+                .withPath(EndpointPath.withValue(path))
                 .build();
     }
 }

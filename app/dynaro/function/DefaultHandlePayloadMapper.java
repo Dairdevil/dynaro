@@ -4,20 +4,23 @@ import dynaro.messages.gateway.HandlePayload;
 import dynaro.messages.ServiceRequest;
 import dynaro.microtypes.EndpointPath;
 
+import java.util.HashMap;
+
 public class DefaultHandlePayloadMapper
         implements SerializableFunction<HandlePayload, ServiceRequest> {
 
-    private String id;
+    private String path;
 
-    public DefaultHandlePayloadMapper(String id) {
-        this.id = id;
+    public DefaultHandlePayloadMapper(String path) {
+        this.path = path;
     }
 
     public ServiceRequest apply(HandlePayload handlePayload) {
         return new ServiceRequest.Builder()
-                .withPath(EndpointPath.withValue(id))
+                .withPath(EndpointPath.withValue(path))
+                .withActualPath(handlePayload.getPath())
                 .withPayload(handlePayload.getPayload())
-                .withQueryString(handlePayload.getQueryString())
+                .withQueryString(handlePayload.getQueryString() == null ? new HashMap<>() : handlePayload.getQueryString())
                 .build();
     }
 }
