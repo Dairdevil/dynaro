@@ -4,7 +4,7 @@
 		module="dynaro-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20181002085754"
+		publication="20181003143741"
 		e:sbtVersion="0.13" e:scalaVersion="2.10"
 	>
 		<description>
@@ -37,91 +37,91 @@
 		<dependency org="org.scala-lang" name="scala-library" rev="2.10.7" conf="scala-tool->default,optional(default);provided->default(compile)"/>
 		<dependency org="org.scala-sbt" name="sbt" rev="0.13.17" conf="provided->default(compile)"/>
 		<dependency org="com.typesafe.play" name="sbt-plugin" rev="2.5.9" conf="compile->default(compile)" e:sbtVersion="0.13" e:scalaVersion="2.10"/>
+		<override org="org.webjars" module="webjars-locator" matcher="exact" rev="0.26"/>
+		<override org="org.scala-lang" module="scala-reflect" matcher="exact" rev="2.10.7"/>
 		<override org="com.typesafe.play" module="sbt-run-support_2.10" matcher="exact" rev="2.5.9"/>
 		<override org="com.typesafe.akka" module="akka-persistence-experimental_2.10" matcher="exact" rev="2.3.11"/>
-		<override org="org.apache.maven" module="maven-plugin-api" matcher="exact" rev="3.2.2"/>
-		<override org="io.apigee.trireme" module="trireme-node10src" matcher="exact" rev="0.8.5"/>
-		<override org="com.typesafe.sbt" module="sbt-native-packager" matcher="exact" rev="1.0.3"/>
-		<override org="org.sonatype.sisu" module="sisu-guice" matcher="exact" rev="3.1.0"/>
-		<override org="com.fasterxml.jackson.core" module="jackson-annotations" matcher="exact" rev="2.3.0"/>
-		<override org="io.spray" module="spray-json_2.10" matcher="exact" rev="1.3.2"/>
-		<override org="org.codehaus.plexus" module="plexus-interpolation" matcher="exact" rev="1.19"/>
-		<override org="org.apache.maven" module="maven-settings" matcher="exact" rev="3.2.2"/>
-		<override org="org.fusesource.leveldbjni" module="leveldbjni-win32" matcher="exact" rev="1.5"/>
-		<override org="org.eclipse.sisu" module="org.eclipse.sisu.inject" matcher="exact" rev="0.0.0.M5"/>
-		<override org="io.apigee.trireme" module="trireme-core" matcher="exact" rev="0.8.5"/>
-		<override org="com.fasterxml.jackson.core" module="jackson-core" matcher="exact" rev="2.3.3"/>
-		<override org="org.apache.maven" module="maven-settings-builder" matcher="exact" rev="3.2.2"/>
-		<override org="org.eclipse.aether" module="aether-impl" matcher="exact" rev="0.9.0.M2"/>
-		<override org="org.bouncycastle" module="bcprov-jdk15on" matcher="exact" rev="1.51"/>
-		<override org="com.typesafe.akka" module="akka-cluster_2.10" matcher="exact" rev="2.3.11"/>
-		<override org="org.eclipse.aether" module="aether-util" matcher="exact" rev="0.9.0.M2"/>
-		<override org="com.google.guava" module="guava" matcher="exact" rev="12.0"/>
-		<override org="org.fusesource.leveldbjni" module="leveldbjni-win64" matcher="exact" rev="1.5"/>
-		<override org="com.typesafe.play" module="twirl-parser_2.10" matcher="exact" rev="1.1.1"/>
-		<override org="org.fusesource.leveldbjni" module="leveldbjni-linux32" matcher="exact" rev="1.5"/>
-		<override org="org.fusesource.leveldbjni" module="leveldbjni-osx" matcher="exact" rev="1.5"/>
-		<override org="com.typesafe.akka" module="akka-contrib_2.10" matcher="exact" rev="2.3.11"/>
-		<override org="com.typesafe" module="config" matcher="exact" rev="1.3.0"/>
-		<override org="com.typesafe.sbt" module="sbt-js-engine" matcher="exact" rev="1.1.3"/>
-		<override org="org.apache.maven" module="maven-repository-metadata" matcher="exact" rev="3.2.2"/>
-		<override org="org.eclipse.aether" module="aether-api" matcher="exact" rev="0.9.0.M2"/>
-		<override org="javax.enterprise" module="cdi-api" matcher="exact" rev="1.0"/>
-		<override org="org.eclipse.aether" module="aether-spi" matcher="exact" rev="0.9.0.M2"/>
-		<override org="javax.inject" module="javax.inject" matcher="exact" rev="1"/>
-		<override org="org.iq80.leveldb" module="leveldb" matcher="exact" rev="0.5"/>
-		<override org="com.typesafe.play" module="build-link" matcher="exact" rev="2.5.9"/>
-		<override org="commons-io" module="commons-io" matcher="exact" rev="2.4"/>
-		<override org="org.eclipse.sisu" module="org.eclipse.sisu.plexus" matcher="exact" rev="0.0.0.M5"/>
-		<override org="net.contentobjects.jnotify" module="jnotify" matcher="exact" rev="0.94-play-1"/>
 		<override org="org.apache.maven" module="maven-artifact" matcher="exact" rev="3.2.2"/>
-		<override org="javax.annotation" module="jsr250-api" matcher="exact" rev="1.0"/>
-		<override org="org.fusesource.hawtjni" module="hawtjni-runtime" matcher="exact" rev="1.8"/>
-		<override org="org.codehaus.plexus" module="plexus-utils" matcher="exact" rev="3.0.17"/>
-		<override org="org.slf4j" module="slf4j-api" matcher="exact" rev="1.7.12"/>
-		<override org="com.typesafe.play" module="twirl-api_2.10" matcher="exact" rev="1.1.1"/>
-		<override org="com.typesafe" module="npm_2.10" matcher="exact" rev="1.1.1"/>
-		<override org="org.webjars" module="npm" matcher="exact" rev="2.11.2"/>
-		<override org="org.bouncycastle" module="bcpg-jdk15on" matcher="exact" rev="1.51"/>
-		<override org="com.typesafe.play" module="sbt-routes-compiler_2.10" matcher="exact" rev="2.5.9"/>
-		<override org="org.uncommons.maths" module="uncommons-maths" matcher="exact" rev="1.2.2a"/>
-		<override org="com.typesafe.play" module="play-exceptions" matcher="exact" rev="2.5.9"/>
-		<override org="aopalliance" module="aopalliance" matcher="exact" rev="1.0"/>
-		<override org="org.apache.commons" module="commons-lang3" matcher="exact" rev="3.4"/>
-		<override org="com.typesafe" module="jse_2.10" matcher="exact" rev="1.1.2"/>
-		<override org="com.fasterxml.jackson.core" module="jackson-databind" matcher="exact" rev="2.3.3"/>
-		<override org="org.webjars" module="webjars-locator" matcher="exact" rev="0.26"/>
-		<override org="org.sonatype.plexus" module="plexus-cipher" matcher="exact" rev="1.4"/>
-		<override org="io.apigee" module="rhino" matcher="exact" rev="1.7R5pre4"/>
-		<override org="org.iq80.leveldb" module="leveldb-api" matcher="exact" rev="0.5"/>
-		<override org="com.typesafe.play" module="twirl-compiler_2.10" matcher="exact" rev="1.1.1"/>
-		<override org="default" module="alpha-service-build" matcher="exact" rev="0.1-SNAPSHOT"/>
-		<override org="org.codehaus.plexus" module="plexus-component-annotations" matcher="exact" rev="1.5.5"/>
-		<override org="org.fusesource.leveldbjni" module="leveldbjni-all" matcher="exact" rev="1.7"/>
-		<override org="org.apache.ant" module="ant" matcher="exact" rev="1.9.3"/>
-		<override org="org.sonatype.plexus" module="plexus-sec-dispatcher" matcher="exact" rev="1.3"/>
-		<override org="org.webjars" module="webjars-locator-core" matcher="exact" rev="0.26"/>
-		<override org="com.google.protobuf" module="protobuf-java" matcher="exact" rev="2.5.0"/>
-		<override org="com.typesafe.akka" module="akka-remote_2.10" matcher="exact" rev="2.3.11"/>
-		<override org="org.apache.ant" module="ant-launcher" matcher="exact" rev="1.9.3"/>
-		<override org="org.fusesource.leveldbjni" module="leveldbjni-linux64" matcher="exact" rev="1.5"/>
-		<override org="org.fusesource.leveldbjni" module="leveldbjni" matcher="exact" rev="1.7"/>
-		<override org="org.apache.maven" module="maven-model" matcher="exact" rev="3.2.2"/>
-		<override org="com.typesafe.sbt" module="sbt-twirl" matcher="exact" rev="1.1.1"/>
-		<override org="com.typesafe.play" module="sbt-plugin" matcher="exact" rev="2.5.9"/>
-		<override org="org.apache.maven" module="maven-aether-provider" matcher="exact" rev="3.2.2"/>
 		<override org="org.scala-lang" module="scala-compiler" matcher="exact" rev="2.10.7"/>
-		<override org="org.scala-lang" module="scala-reflect" matcher="exact" rev="2.10.7"/>
-		<override org="org.codehaus.plexus" module="plexus-classworlds" matcher="exact" rev="2.5.1"/>
-		<override org="org.apache.maven" module="maven-model-builder" matcher="exact" rev="3.2.2"/>
-		<override org="org.slf4j" module="slf4j-simple" matcher="exact" rev="1.7.12"/>
-		<override org="org.scala-lang" module="scala-library" matcher="exact" rev="2.10.7"/>
-		<override org="org.apache.commons" module="commons-compress" matcher="exact" rev="1.9"/>
-		<override org="org.apache.maven" module="maven-core" matcher="exact" rev="3.2.2"/>
-		<override org="com.typesafe.sbt" module="sbt-web" matcher="exact" rev="1.3.0"/>
-		<override org="io.netty" module="netty" matcher="exact" rev="3.8.0.Final"/>
-		<override org="org.vafer" module="jdeb" matcher="exact" rev="1.3"/>
-		<override org="com.typesafe.akka" module="akka-actor_2.10" matcher="exact" rev="2.3.11"/>
 		<override org="com.google.code.findbugs" module="jsr305" matcher="exact" rev="1.3.9"/>
+		<override org="com.google.guava" module="guava" matcher="exact" rev="12.0"/>
+		<override org="net.contentobjects.jnotify" module="jnotify" matcher="exact" rev="0.94-play-1"/>
+		<override org="org.apache.maven" module="maven-aether-provider" matcher="exact" rev="3.2.2"/>
+		<override org="org.bouncycastle" module="bcprov-jdk15on" matcher="exact" rev="1.51"/>
+		<override org="com.fasterxml.jackson.core" module="jackson-core" matcher="exact" rev="2.3.3"/>
+		<override org="org.eclipse.sisu" module="org.eclipse.sisu.inject" matcher="exact" rev="0.0.0.M5"/>
+		<override org="org.bouncycastle" module="bcpg-jdk15on" matcher="exact" rev="1.51"/>
+		<override org="com.typesafe.akka" module="akka-actor_2.10" matcher="exact" rev="2.3.11"/>
+		<override org="org.sonatype.plexus" module="plexus-sec-dispatcher" matcher="exact" rev="1.3"/>
+		<override org="commons-io" module="commons-io" matcher="exact" rev="2.4"/>
+		<override org="com.typesafe.play" module="sbt-plugin" matcher="exact" rev="2.5.9"/>
+		<override org="org.fusesource.leveldbjni" module="leveldbjni-linux32" matcher="exact" rev="1.5"/>
+		<override org="org.eclipse.aether" module="aether-spi" matcher="exact" rev="0.9.0.M2"/>
+		<override org="org.fusesource.leveldbjni" module="leveldbjni" matcher="exact" rev="1.7"/>
+		<override org="org.eclipse.aether" module="aether-api" matcher="exact" rev="0.9.0.M2"/>
+		<override org="com.typesafe" module="npm_2.10" matcher="exact" rev="1.1.1"/>
+		<override org="org.fusesource.leveldbjni" module="leveldbjni-osx" matcher="exact" rev="1.5"/>
+		<override org="org.apache.maven" module="maven-plugin-api" matcher="exact" rev="3.2.2"/>
+		<override org="javax.enterprise" module="cdi-api" matcher="exact" rev="1.0"/>
+		<override org="com.typesafe.akka" module="akka-contrib_2.10" matcher="exact" rev="2.3.11"/>
+		<override org="javax.annotation" module="jsr250-api" matcher="exact" rev="1.0"/>
+		<override org="org.iq80.leveldb" module="leveldb-api" matcher="exact" rev="0.5"/>
+		<override org="javax.inject" module="javax.inject" matcher="exact" rev="1"/>
+		<override org="org.apache.maven" module="maven-repository-metadata" matcher="exact" rev="3.2.2"/>
+		<override org="org.apache.commons" module="commons-compress" matcher="exact" rev="1.9"/>
+		<override org="org.sonatype.plexus" module="plexus-cipher" matcher="exact" rev="1.4"/>
+		<override org="org.codehaus.plexus" module="plexus-utils" matcher="exact" rev="3.0.17"/>
+		<override org="com.typesafe.play" module="twirl-parser_2.10" matcher="exact" rev="1.1.1"/>
+		<override org="org.scala-lang" module="scala-library" matcher="exact" rev="2.10.7"/>
+		<override org="org.apache.ant" module="ant" matcher="exact" rev="1.9.3"/>
+		<override org="com.fasterxml.jackson.core" module="jackson-annotations" matcher="exact" rev="2.3.0"/>
+		<override org="org.vafer" module="jdeb" matcher="exact" rev="1.3"/>
+		<override org="com.typesafe" module="jse_2.10" matcher="exact" rev="1.1.2"/>
+		<override org="org.webjars" module="npm" matcher="exact" rev="2.11.2"/>
+		<override org="org.sonatype.sisu" module="sisu-guice" matcher="exact" rev="3.1.0"/>
+		<override org="default" module="alpha-service-build" matcher="exact" rev="0.1-SNAPSHOT"/>
+		<override org="org.fusesource.leveldbjni" module="leveldbjni-linux64" matcher="exact" rev="1.5"/>
+		<override org="org.eclipse.sisu" module="org.eclipse.sisu.plexus" matcher="exact" rev="0.0.0.M5"/>
+		<override org="org.apache.maven" module="maven-model-builder" matcher="exact" rev="3.2.2"/>
+		<override org="com.typesafe.play" module="play-exceptions" matcher="exact" rev="2.5.9"/>
+		<override org="org.apache.maven" module="maven-settings-builder" matcher="exact" rev="3.2.2"/>
+		<override org="org.codehaus.plexus" module="plexus-component-annotations" matcher="exact" rev="1.5.5"/>
+		<override org="org.fusesource.leveldbjni" module="leveldbjni-win32" matcher="exact" rev="1.5"/>
+		<override org="org.apache.commons" module="commons-lang3" matcher="exact" rev="3.4"/>
+		<override org="com.typesafe.sbt" module="sbt-web" matcher="exact" rev="1.3.0"/>
+		<override org="org.apache.ant" module="ant-launcher" matcher="exact" rev="1.9.3"/>
+		<override org="io.netty" module="netty" matcher="exact" rev="3.8.0.Final"/>
+		<override org="org.apache.maven" module="maven-core" matcher="exact" rev="3.2.2"/>
+		<override org="org.codehaus.plexus" module="plexus-classworlds" matcher="exact" rev="2.5.1"/>
+		<override org="org.fusesource.leveldbjni" module="leveldbjni-win64" matcher="exact" rev="1.5"/>
+		<override org="com.typesafe.play" module="sbt-routes-compiler_2.10" matcher="exact" rev="2.5.9"/>
+		<override org="com.typesafe.sbt" module="sbt-native-packager" matcher="exact" rev="1.0.3"/>
+		<override org="com.typesafe.play" module="build-link" matcher="exact" rev="2.5.9"/>
+		<override org="org.slf4j" module="slf4j-simple" matcher="exact" rev="1.7.12"/>
+		<override org="com.typesafe.akka" module="akka-cluster_2.10" matcher="exact" rev="2.3.11"/>
+		<override org="org.webjars" module="webjars-locator-core" matcher="exact" rev="0.26"/>
+		<override org="org.apache.maven" module="maven-model" matcher="exact" rev="3.2.2"/>
+		<override org="org.eclipse.aether" module="aether-util" matcher="exact" rev="0.9.0.M2"/>
+		<override org="com.typesafe.play" module="twirl-api_2.10" matcher="exact" rev="1.1.1"/>
+		<override org="aopalliance" module="aopalliance" matcher="exact" rev="1.0"/>
+		<override org="com.google.protobuf" module="protobuf-java" matcher="exact" rev="2.5.0"/>
+		<override org="io.apigee.trireme" module="trireme-node10src" matcher="exact" rev="0.8.5"/>
+		<override org="com.typesafe.akka" module="akka-remote_2.10" matcher="exact" rev="2.3.11"/>
+		<override org="io.apigee" module="rhino" matcher="exact" rev="1.7R5pre4"/>
+		<override org="org.apache.maven" module="maven-settings" matcher="exact" rev="3.2.2"/>
+		<override org="org.eclipse.aether" module="aether-impl" matcher="exact" rev="0.9.0.M2"/>
+		<override org="com.typesafe.play" module="twirl-compiler_2.10" matcher="exact" rev="1.1.1"/>
+		<override org="io.apigee.trireme" module="trireme-core" matcher="exact" rev="0.8.5"/>
+		<override org="com.typesafe" module="config" matcher="exact" rev="1.3.0"/>
+		<override org="io.spray" module="spray-json_2.10" matcher="exact" rev="1.3.2"/>
+		<override org="com.typesafe.sbt" module="sbt-js-engine" matcher="exact" rev="1.1.3"/>
+		<override org="com.fasterxml.jackson.core" module="jackson-databind" matcher="exact" rev="2.3.3"/>
+		<override org="org.uncommons.maths" module="uncommons-maths" matcher="exact" rev="1.2.2a"/>
+		<override org="com.typesafe.sbt" module="sbt-twirl" matcher="exact" rev="1.1.1"/>
+		<override org="org.slf4j" module="slf4j-api" matcher="exact" rev="1.7.12"/>
+		<override org="org.fusesource.hawtjni" module="hawtjni-runtime" matcher="exact" rev="1.8"/>
+		<override org="org.fusesource.leveldbjni" module="leveldbjni-all" matcher="exact" rev="1.7"/>
+		<override org="org.codehaus.plexus" module="plexus-interpolation" matcher="exact" rev="1.19"/>
+		<override org="org.iq80.leveldb" module="leveldb" matcher="exact" rev="0.5"/>
 	</dependencies>
 </ivy-module>

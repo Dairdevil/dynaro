@@ -7,8 +7,14 @@ import akka.cluster.pubsub.DistributedPubSubMediator;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import dynaro.endpoint.Endpoint;
+import dynaro.exception.DynaroException;
+import dynaro.exception.http.HttpStatusException;
 import dynaro.messages.RegisterEndpoint;
 import dynaro.messages.RegisterEndpointConfirmation;
+import dynaro.messages.response.ServiceResponse;
+import dynaro.messages.response.failure.FailureResponse;
+import dynaro.messages.response.failure.UnexpectedErrorResponse;
+import dynaro.messages.response.success.SuccessResponse;
 import dynaro.messages.service.EndpointRequest;
 
 import java.lang.reflect.ParameterizedType;
@@ -36,7 +42,24 @@ public abstract class EndpointWorker<R extends EndpointRequest>
         return receiveBuilder()
                 .match(getRequestClass(), r -> {
                     log.info("Message received in Dynaro Endpoint Worker");
-                    performAction(r);
+
+                    ServiceResponse response;
+
+                    try {
+                        Object obj = performAction(r);
+                        response = new SuccessResponse(obj);
+                    }
+                    catch (HttpStatusException hse) {
+                        response = new FailureResponse(hse);
+                    }
+                    catch (DynaroException de) {
+                        response = new FailureResponse(de);
+                    }
+                    catch (Throwable t) {
+                        response = new UnexpectedErrorResponse(t);
+                    }
+
+                    context().sender().tell(response, getSelf());
 
                 })
                 .match(RegisterEndpoint.class, r -> {
@@ -65,7 +88,7 @@ public abstract class EndpointWorker<R extends EndpointRequest>
 
     protected abstract Endpoint getEndpoint();
 
-    protected abstract void performAction(R request);
+    protected abstract Object performAction(R request) throws DynaroException;
 
     protected abstract String getSupervisorName();
 

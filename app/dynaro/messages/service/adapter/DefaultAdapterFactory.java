@@ -47,7 +47,7 @@ public class DefaultAdapterFactory
                 adapterMap.put(path, t.newInstance());
             }
             catch (NoSuchMethodException nsme) {
-                // TODO do nothing? getPath is part of the EndpointWorker interface
+                // TODO throw error specifying that static method path() must be available on each endpoint worker
             }
             catch (IllegalAccessException | InvocationTargetException | InstantiationException e) {
                 // TODO handle

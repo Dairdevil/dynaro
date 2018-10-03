@@ -13,6 +13,7 @@ import dynaro.endpoint.EndpointRegistry;
 import dynaro.messages.gateway.HandlePayload;
 import dynaro.messages.RegisterEndpoint;
 import dynaro.messages.RegisterEndpointConfirmation;
+import dynaro.messages.response.failure.EndpointNotFoundResponse;
 import dynaro.microtypes.EndpointPath;
 
 public class DynaroSupervisor
@@ -36,7 +37,7 @@ public class DynaroSupervisor
                     Endpoint endpoint = EndpointRegistry.get(EndpointPath.withValue(p.getPath()));
 
                     if (endpoint == null) {
-                        context().sender().tell("Endpoint not found", getSelf());
+                        context().sender().tell(new EndpointNotFoundResponse(p.getPath()), getSelf());
                     }
                     else {
                         mediator.tell(

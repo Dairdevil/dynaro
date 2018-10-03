@@ -9,8 +9,11 @@ import akka.management.cluster.bootstrap.ClusterBootstrap;
 import akka.pattern.Patterns;
 import dynaro.actors.DynaroSupervisor;
 import dynaro.messages.gateway.HandlePayload;
+import dynaro.messages.response.ServiceResponse;
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Results;
 import scala.compat.java8.FutureConverters;
 
 import java.util.concurrent.CompletionStage;
@@ -83,7 +86,7 @@ public abstract class DynaroController
 
                     this.postHandle();
 
-                    return ok((String) response);
+                    return this.handleResponse(response);
                 });
     }
 
@@ -99,6 +102,24 @@ public abstract class DynaroController
      */
     protected void postHandle() {
 
+    }
+
+    /**
+     * Handle Results from workers, default behaviour is defined and can be overridden
+     *
+     * @return Result
+     */
+    protected Result handleResponse(Object response) {
+
+        if (response instanceof ServiceResponse) {
+
+            ServiceResponse sr = (ServiceResponse) response;
+
+            return Results.status(sr.getStatus(), Json.toJson(sr));
+        }
+        else {
+            return Results.status(200, Json.toJson(response));
+        }
     }
 
     public ActorSystem getSystem() {
