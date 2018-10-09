@@ -1,5 +1,6 @@
 package dynaro.messages;
 
+import akka.actor.Address;
 import dynaro.endpoint.Endpoint;
 
 import java.io.Serializable;
@@ -11,9 +12,12 @@ public class RegisterEndpoint
 
     private String owner;
 
-    public RegisterEndpoint(Endpoint endpoint, String owner) {
+    private Address address;
+
+    public RegisterEndpoint(Endpoint endpoint, String owner, Address address) {
         this.endpoint = endpoint;
         this.owner = owner;
+        this.address = address;
     }
 
     public Endpoint getEndpoint() {
@@ -22,5 +26,9 @@ public class RegisterEndpoint
 
     public String getOwner() {
         return owner;
+    }
+
+    public Address getAddress() {
+        return address;
     }
 }
