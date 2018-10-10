@@ -1,16 +1,16 @@
 package dynaro.gateway;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GatewayRegistry {
 
     public static GatewayRegistry KNOWN_GATEWAYS = new GatewayRegistry();
 
-    private Collection<Gateway> gateways;
+    private Set<Gateway> gateways;
 
     public GatewayRegistry() {
-        this.gateways = new ArrayList<>();
+        this.gateways = new HashSet<>();
     }
 
     public void add(Gateway gateway) {

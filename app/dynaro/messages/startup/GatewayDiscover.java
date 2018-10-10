@@ -4,12 +4,12 @@ import dynaro.gateway.Gateway;
 
 import java.io.Serializable;
 
-public class GatewayJoin
+public class GatewayDiscover
         implements Serializable {
 
     Gateway gateway;
 
-    public GatewayJoin(Gateway gateway) {
+    public GatewayDiscover(Gateway gateway) {
         this.gateway = gateway;
     }
 

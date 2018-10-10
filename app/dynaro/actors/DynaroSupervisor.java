@@ -20,7 +20,8 @@ import dynaro.messages.gateway.HandlePayload;
 import dynaro.messages.RegisterEndpoint;
 import dynaro.messages.RegisterEndpointConfirmation;
 import dynaro.messages.response.failure.EndpointNotFoundResponse;
-import dynaro.messages.startup.GatewayJoin;
+import dynaro.messages.startup.GatewayDiscover;
+import dynaro.messages.startup.ServiceDiscover;
 import dynaro.microtypes.EndpointPath;
 
 public class DynaroSupervisor
@@ -49,6 +50,9 @@ public class DynaroSupervisor
         cluster.registerOnMemberUp(
                 () -> cluster.subscribe(getSelf(), ClusterEvent.MemberRemoved.class)
         );
+
+        // Subscribe to service joining
+        mediator.tell(new DistributedPubSubMediator.Subscribe(Topic.SERVICE_JOIN.getValue(), getSelf()), getSelf());
 
         return receiveBuilder()
                 .match(HandlePayload.class, p -> {
@@ -89,6 +93,21 @@ public class DynaroSupervisor
                         EndpointRegistry.purge(m.member().address());
                     }
                 })
+                .match(ServiceDiscover.class, s -> {
+                    /**
+                     * TODO:
+                     * Improve this, currently will notify all instances of the same node. No negative effect,
+                     * just wasted effort
+                     */
+                    mediator.tell(
+                            new DistributedPubSubMediator.SendToAll(
+                                    String.format("/user/%s", s.getSupervisorName()),
+                                    new GatewayDiscover(Gateway.at(address))),
+                            getSelf());
+                })
+                .match(DistributedPubSubMediator.SubscribeAck.class, ack -> {
+                    log.info("Successfully subscribed to a topic");
+                })
                 .build();
     }
 
@@ -96,7 +115,7 @@ public class DynaroSupervisor
 
         mediator.tell(new DistributedPubSubMediator.Publish(
                 Topic.GATEWAY_JOIN.getValue(),
-                new GatewayJoin(Gateway.at(address))),
+                new GatewayDiscover(Gateway.at(address))),
                 getSelf());
     }
 

@@ -49,7 +49,7 @@ public abstract class EndpointWorker<R extends EndpointRequest>
         log.debug("Registering self with mediator");
         mediator.tell(new DistributedPubSubMediator.Put(getSelf()), getSelf());
 
-        scheduleRegisterEndpoint();
+        scheduleCheckKnownGateways();
 
         return receiveBuilder()
                 .match(getRequestClass(), r -> {
@@ -78,6 +78,7 @@ public abstract class EndpointWorker<R extends EndpointRequest>
                     if (!registeredOnAllGateways()) {
                         log.debug("Attempting to register self with gateways");
 
+                        // TODO find gateways not yet registered and target these rather than sendtoall
                         mediator.tell(
                                 new DistributedPubSubMediator.SendToAll(
                                         String.format("/user/%s", DynaroSupervisor.NAME),
@@ -159,7 +160,6 @@ public abstract class EndpointWorker<R extends EndpointRequest>
     }
 
     private boolean registeredOnAllGateways() {
-        return !KNOWN_GATEWAYS.isEmpty()
-                && !KNOWN_GATEWAYS.containsAdditionalGateways(REGISTERED_GATEWAYS);
+        return !KNOWN_GATEWAYS.containsAdditionalGateways(REGISTERED_GATEWAYS);
     }
 }

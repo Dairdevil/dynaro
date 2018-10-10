@@ -1,6 +1,7 @@
 package dynaro.actors;
 
 import akka.actor.AbstractActor;
+import akka.actor.Actor;
 import akka.actor.ActorRef;
 import akka.cluster.Cluster;
 import akka.cluster.ClusterEvent;
@@ -13,11 +14,15 @@ import dynaro.constants.Role;
 import dynaro.constants.Topic;
 import dynaro.gateway.Gateway;
 import dynaro.messages.request.ServiceRequest;
+import dynaro.messages.service.CheckKnownGateways;
 import dynaro.messages.service.EndpointRequest;
 import dynaro.messages.service.adapter.Adapter;
 import dynaro.messages.service.adapter.AdapterFactory;
 import dynaro.messages.service.adapter.DefaultAdapterFactory;
-import dynaro.messages.startup.GatewayJoin;
+import dynaro.messages.startup.GatewayDiscover;
+import dynaro.messages.startup.ServiceDiscover;
+
+import java.time.Duration;
 
 import static dynaro.gateway.GatewayRegistry.KNOWN_GATEWAYS;
 
@@ -46,6 +51,9 @@ public abstract class ServiceSupervisor
                 () -> cluster.subscribe(getSelf(), ClusterEvent.MemberRemoved.class)
         );
 
+        // Begin polling for gateways
+        scheduleCheckKnownGateways();
+
         return createReceiveBuilder()
                 .match(ServiceRequest.class, r -> {
                     log.info("Service Request message received in Service Supervisor");
@@ -56,11 +64,20 @@ public abstract class ServiceSupervisor
 
                     context().actorOf(adapter.getActorProps()).tell(adapted, context().sender());
                 })
-                .match(GatewayJoin.class, g -> {
+                .match(GatewayDiscover.class, g -> {
                     log.info("New gateway detected with address %s", g.getGateway().getAddress());
 
                     // Add gateway to known gateways, service actors will detect this change and update accordingly
                     KNOWN_GATEWAYS.add(g.getGateway());
+                })
+                .match(CheckKnownGateways.class, g -> {
+                    log.info("Checking for gateways");
+
+                    if (KNOWN_GATEWAYS.isEmpty()) {
+                        notifyGateways(mediator);
+
+                        scheduleCheckKnownGateways();
+                    }
                 })
                 .match(ClusterEvent.MemberRemoved.class, m -> {
 
@@ -82,5 +99,25 @@ public abstract class ServiceSupervisor
      */
     protected ReceiveBuilder createReceiveBuilder() {
         return receiveBuilder();
+    }
+
+    protected abstract String getName();
+
+    private void notifyGateways(ActorRef mediator) {
+        mediator.tell(new DistributedPubSubMediator.Publish(
+                Topic.SERVICE_JOIN.getValue(),
+                new ServiceDiscover(getName())),
+                getSelf());
+    }
+
+    private void scheduleCheckKnownGateways() {
+
+        getContext().getSystem().scheduler()
+                .scheduleOnce(
+                        Duration.ofSeconds(60),
+                        getSelf(),
+                        new CheckKnownGateways(),
+                        getContext().dispatcher(),
+                        getSelf());
     }
 }
